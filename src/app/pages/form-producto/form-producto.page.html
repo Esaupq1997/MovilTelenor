@@ -1,0 +1,84 @@
+
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-title>Agregar Producto</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="dismissModal()">Close</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <form [formGroup]="formProducto" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="floating">Modelo</ion-label>
+        <ion-input [(ngModel)]="producto.prod_modelo" formControlName="modeloProducto" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+    
+      <ion-item>
+        <ion-label position="floating">Descripcion</ion-label>
+        <ion-input [(ngModel)]="producto.prod_descripcion" formControlName="descripcionProducto" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Caracteristica</ion-label>
+        <ion-textarea formControlName="caracteristicaProducto" [(ngModel)]="producto.prod_caracteristica" rows="3" placeholder=""></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-label style="width: 30%;">Categoria</ion-label>
+        <ion-select [(ngModel)]="producto.fk_id_categoria" formControlName="categoriaProducto"  [compareWith]="compareWith">
+          <ion-select-option *ngFor="let option of categoria" [value]="option.id_categoria">{{option.cat_nombre}}</ion-select-option>
+        </ion-select>
+        <ion-buttons style="margin-left:10px;">
+          <ion-button color="primary"><ion-icon style="height: 30px;width: 30px;" name="add-circle-outline"></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Marca</ion-label>
+        <ion-select  [(ngModel)]="producto.fk_id_marca" formControlName="marcaProducto"  [compareWith]="compareWith">
+          <ion-select-option *ngFor="let option of marca" [value]="option.id_marca">{{option.mar_nombre}}</ion-select-option>
+        </ion-select>
+        <ion-buttons style="margin-left:10px;">
+          <ion-button color="primary"><ion-icon style="height: 30px;width: 30px;" name="add-circle-outline"></ion-icon></ion-button>
+        </ion-buttons>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>U.Medida</ion-label>
+        <ion-select [(ngModel)]="producto.fk_id_medida" formControlName="medidaProducto" [compareWith]="compareWith">
+          <ion-select-option *ngFor="let option of medida" [value]="option.id_medida">{{option.med_unidad}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Tipo</ion-label>
+        <ion-select [(ngModel)]="producto.fk_id_tipo" formControlName="tipoProducto" [compareWith]="compareWith">
+          <ion-select-option *ngFor="let option of tipoProducto" [value]="option.id_tipo">{{option.tip_nombre}}</ion-select-option>
+        </ion-select>
+        
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Activo</ion-label>
+        <ion-checkbox formControlName="activoProducto" name="activo" [(ngModel)]="producto.prod_activo" color="primary"></ion-checkbox>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Precio Venta</ion-label>
+        <ion-input formControlName="precioProducto" [(ngModel)]="producto.prod_precioVenta" autocapitalize type="number"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">Img</ion-label>
+        <ion-input [(ngModel)]="producto.prod_imagen "  formControlName="imgProducto" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
+  <ion-button color="primary" (click)="saveNewProducto()">
+    Guardar<ion-icon slot="end" name="save-outline"></ion-icon>
+  </ion-button>
+</ion-content>
