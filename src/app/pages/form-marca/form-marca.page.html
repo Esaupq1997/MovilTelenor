@@ -1,0 +1,33 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalMarca()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Agregar Marca</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <form [formGroup]="formMarca" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="fixed">Nombre</ion-label>
+        <ion-input [(ngModel)]="marca.mar_nombre"  formControlName="nombreMarca" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Decripcion:</ion-label>
+        <ion-textarea [(ngModel)]="marca.mar_descripcion" formControlName="descripcionMarca" rows="3"  placeholder="..."></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Activo</ion-label>
+        <ion-checkbox slot="start" [(ngModel)]="marca.mar_activo" formControlName="pepperoni"  name="activo"  color="primary"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-button color="primary" expand="block" (click)="saveNewMarca()">
+    Guardar<ion-icon slot="end" name="save-outline"></ion-icon>
+  </ion-button>
+</ion-content>

@@ -15,9 +15,9 @@
     <ion-item *ngFor="let item of producto">
       
         <ion-avatar slot="start"> 
-          <ion-img [src]="item.prod_imagen "></ion-img>
+          <ion-img [src]="item.prod_imagen"></ion-img>
         </ion-avatar>
-        <ion-label>
+        <ion-label (click)="abrirModalProducto(item.id_Producto)">
           {{item.prod_modelo}}
         </ion-label>
         
@@ -26,7 +26,7 @@
   </ion-list>
 
   <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button color="danger" (click)="abrirModalProducto()">
+    <ion-fab-button color="danger" (click)="abrirModalProducto('')">
       <ion-icon name="add-outline"></ion-icon>
     </ion-fab-button>
   </ion-fab>

@@ -44,22 +44,22 @@ export class ListProductoPage implements OnInit {
     this.router.navigate(['/menu/form-producto'])
   }
 
-  async abrirModalProducto(){
+  async abrirModalProducto(idProductos:any){
+    console.log("id" + idProductos);
     const modalProducto = await this.modalController.create({
       component: FormProductoPage,
       cssClass: 'my-custom-class',
       componentProps: {
-        'firstName': 'Douglas',
-        'lastName': 'Adams',
-        'middleInitial': 'N'
+        idProducto: idProductos
       }
     });
     await modalProducto.present();
 
     const { data } = await modalProducto.onWillDismiss();
     console.log(data);
-    if(data == "cerrado"){
-      console.log("Entro al if");
+    if(data == "Guardado"){
+      console.log("entro a guardado")
+      this.getProductos();
     }
   }
 }

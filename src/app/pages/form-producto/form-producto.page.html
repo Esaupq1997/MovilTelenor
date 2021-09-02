@@ -1,12 +1,24 @@
 
 <ion-header translucent>
   <ion-toolbar color="primary">
-    <ion-title>Agregar Producto</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="dismissModal()">Close</ion-button>
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModal()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
     </ion-buttons>
+    <ion-title>Agregar Producto</ion-title>
+    
+      <ion-buttons *ngIf="edit"  slot="end">
+        <ion-button (click)="deleteProducto()">
+          <ion-icon name="trash-outline"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    
+    
   </ion-toolbar>
 </ion-header>
+
+
 
 <ion-content>
   
@@ -33,7 +45,7 @@
           <ion-select-option *ngFor="let option of categoria" [value]="option.id_categoria">{{option.cat_nombre}}</ion-select-option>
         </ion-select>
         <ion-buttons style="margin-left:10px;">
-          <ion-button color="primary"><ion-icon style="height: 30px;width: 30px;" name="add-circle-outline"></ion-icon></ion-button>
+          <ion-button (click)="abrirModalCategoria()" color="primary"><ion-icon style="height: 30px;width: 30px;" name="add-circle-outline"></ion-icon></ion-button>
         </ion-buttons>
       </ion-item>
 
@@ -43,7 +55,7 @@
           <ion-select-option *ngFor="let option of marca" [value]="option.id_marca">{{option.mar_nombre}}</ion-select-option>
         </ion-select>
         <ion-buttons style="margin-left:10px;">
-          <ion-button color="primary"><ion-icon style="height: 30px;width: 30px;" name="add-circle-outline"></ion-icon></ion-button>
+          <ion-button (click)="abrirModalModal()" color="primary"><ion-icon style="height: 30px;width: 30px;" name="add-circle-outline"></ion-icon></ion-button>
         </ion-buttons>
       </ion-item>
 
@@ -78,7 +90,7 @@
       </ion-item>
     </ion-list>
   </form>
-  <ion-button color="primary" (click)="saveNewProducto()">
+  <ion-button color="primary" expand="block" (click)="edit ? updateProducto() : saveNewProducto()">
     Guardar<ion-icon slot="end" name="save-outline"></ion-icon>
   </ion-button>
 </ion-content>

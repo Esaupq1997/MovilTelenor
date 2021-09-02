@@ -1,0 +1,34 @@
+<ion-header translucent>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-button (click)="dismissModalCategoria()">
+        <ion-icon name="arrow-back-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Agregar Categoria</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content>
+  <form [formGroup]="formCategoria" (ngSubmit)="submit()">
+    <ion-list>
+      <ion-item>
+        <ion-label position="fixed">Nombre</ion-label>
+        <ion-input [(ngModel)]="categoria.cat_nombre" formControlName="firstName" autocapitalize inputmode="text"></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="fixed">Decripcion:</ion-label>
+        <ion-textarea [(ngModel)]="categoria.cat_descripcion" formControlName="descripcionCategoria" rows="3"  placeholder="..."></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <ion-label>Activo</ion-label>
+        <ion-checkbox slot="start" formControlName="activoCategoria" name="activo" [(ngModel)]="categoria.cat_activo" color="primary"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </form>
+
+  <ion-button color="primary" expand="block" (click)="edit ? updateCategoria() : saveNewCategoria()">
+    Guardar<ion-icon slot="end" name="save-outline"></ion-icon>
+  </ion-button>
+</ion-content>
